@@ -6,16 +6,16 @@ services:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - 80:80
-      - 443:443
+      - "8080:8080"
+      - "443:443"
   trebek-api:
     restart: always
     container_name: trebek-api
     build: ./api
-    expose:
-      - 5000
     volumes:
-      - ./app:/usr/src/app
+      - ./api:/usr/apps/trebek-api
+    ports:
+      - "5000:5000"
     environment:
       - FLASK_ENV=development
       - FLASK_APP=app.py

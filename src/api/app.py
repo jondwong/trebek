@@ -7,7 +7,7 @@ from src.board import get_board
 from uuid import uuid4
 import urllib.parse
 import requests
-
+import os
 
 
 app = Flask(__name__)
@@ -101,3 +101,5 @@ def get_game():
         return {'game': resp.json()}
     
     #return {'game': resp.json()}
+if __name__ == '__main__':
+     app.run(host='0.0.0.0', port=os.getenv('PORT'))

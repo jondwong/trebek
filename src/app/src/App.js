@@ -56,7 +56,7 @@ class App extends Component {
 
   _start_new_game() {
     this.setState({loading: true});
-    fetch('/questions')
+    fetch('/api/questions')
       .then((res) => res.json())
       .then((data) => {
         let q = data.questions;
@@ -91,6 +91,8 @@ class App extends Component {
           },
           loading: false,
           source_url: data.game_url,
+          game_ended: false,
+          curr_question_idx: 0
         });
       });
   }

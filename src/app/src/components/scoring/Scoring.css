@@ -1,0 +1,56 @@
+.Score {
+  flex-grow: 1;
+}
+
+.ScoreContainer {
+  display:flex;
+  flex-direction: row;
+
+  margin-top:200px;
+}
+
+.Score-team {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top:8px;
+  padding-bottom: 8px;
+}
+
+.Score-points {
+  font-size: calc(50px + 2vmin);
+}
+
+.Scoreboard {
+  margin-top:100px;
+}
+.Scoreboard-row {
+  display:flex;
+}
+
+.Scoreboard-cell {
+ 
+  font-size:calc(5px + 2vmin);
+  border:1px solid #2f394b;
+  padding:5px;
+  width:3vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.TotalScoreboardCell {
+  min-width: 100px;
+  border: 1px solid #2f394b;
+  font-size:calc(5px + 2vmin);
+}
+
+.TeamScoreboardCell {
+  min-width: 150px;
+  border: 1px solid #445679;
+  font-size:calc(1px + 2vmin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

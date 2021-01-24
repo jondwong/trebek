@@ -1,0 +1,22 @@
+version: "3"
+services: 
+  trebek-app:
+    container_name: "trebek-app"
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+  trebek-api:
+    restart: always
+    container_name: trebek-api
+    build: ./api
+    expose:
+      - 5000
+    volumes:
+      - ./app:/usr/src/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1

@@ -1,0 +1,94 @@
+
+.button {
+  border-radius:5px; 
+  padding-left:10px;
+  padding-right:10px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  padding:10px;
+  font-size:30px;
+  min-width: 100px; 
+  margin-left:8px;
+  cursor:pointer;
+}
+
+.button:hover {
+  filter: brightness(150%);
+}
+
+.green {
+
+}
+
+.TeamButton {
+  display:flex; 
+ border-radius:5px;
+  
+}
+
+.TeamButton-text {
+  font-size: calc(4px + 2vmin)
+}
+
+
+.TeamButton-icon {
+  font-size: calc(4px + 2vmin);
+  min-width:25px;
+}
+
+.TeamButton-icon:hover {
+  filter: brightness(150%);
+  cursor: pointer;
+}
+
+.TeamButton-iconcontainer {
+  display:flex;
+  flex:column;
+  justify-content: center;
+  align-items: center;
+  width:50px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.TeamButton-iconcontainer:last-child {
+  border-radius:0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
+.TeamButton-iconcontainer:hover {
+   filter: brightness(150%);
+   cursor:pointer;
+}
+
+.TeamButton-text {
+  display:flex;
+  flex:column;
+  justify-content:center;
+  align-items: center;
+  margin-left:8px;
+  margin-right:8px;
+}
+
+.TeamButton:not(:first-child) {
+  margin-left:8px;
+}
+
+.insensitive {
+  filter:brightness(80%) !important;
+}
+
+.insensitive:hover {
+  cursor: pointer !important;
+}
+
+.nav-button {
+    border: 1px solid transparent;
+}
+
+.nav-button:hover {
+    border: 1px solid #2f394b;
+}

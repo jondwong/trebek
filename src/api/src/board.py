@@ -17,6 +17,10 @@ def unescape(text):
 def generate_round(soup, id):
     board = []
     round = soup.find(id=id)
+    if not round:
+        print('no round found with id: ', id)
+        return None
+
     categories_soup = round.find_all(class_='category')
     for category in categories_soup:
         ctgy = {}
@@ -25,8 +29,6 @@ def generate_round(soup, id):
         ctgy['questions'] = []
         board.append(ctgy)
 
-    # round_rows = round.find(class_="round").find_all("tr")[1:]
-    # print(round_rows[1:5])
     current_category = None
     for clue in round.select('td.clue'):
         question = None
@@ -46,7 +48,7 @@ def generate_round(soup, id):
                 text = text.replace('<l>','').replace('</l>','')
                 id = clue_info.get('id')
             except Exception as exc:
-                print("Exception getting clue info: ", clue)
+                ("Exception getting clue info: ", clue)
                 print(exc)
                 raise exc
             id_elements = id.split("_")
@@ -93,9 +95,7 @@ def get_final(soup):
     answer = None
     for div in divs:
         if div['onmouseover']:
-            print(div['onmouseover'])
             match = cl.search(div['onmouseover'])
-            print(match)
             if not match:
                 raise Exception("CLUE ANSWER COULD NOT BE FOUND!")
             answer = match.groups()[0]
@@ -112,19 +112,22 @@ def get_board(url):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
 
+
     try:
         board = {
             'game_url': url,
-            'rounds': {
-                'jeopardy': {
-                    'board': generate_round(soup, 'jeopardy_round')
-                },
-                'double_jeopardy': {
-                    'board': generate_round(soup, 'double_jeopardy_round')
-                },
-                #    'final_jeopardy': get_final(soup)
-            }
+            'rounds': []
         }
+
+        jeopardy_board = generate_round(soup, 'jeopardy_round')
+        if jeopardy_board:
+            board['rounds'].append(jeopardy_board)
+
+        
+        double_jeopardy_board = generate_round(soup, 'double_jeopardy_round')
+        if double_jeopardy_board:
+            board['rounds'].append(double_jeopardy_board)
+
         return board
     except Exception as exc:
 

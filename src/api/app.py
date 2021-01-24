@@ -36,15 +36,16 @@ def get_questions():
             resp = get_questions_impl()
             failure = False
             return resp
-        except:
+        except Exception as exc:
+            print(exc)
             continue
 
 
 def get_questions_impl():
-    def pick_questions_from_round(jeopardy_round, point_multiplier):
+    def pick_questions_from_round(jeopardy_round, point_multiplier, num_categories=NUM_CATEGORIES):
         out_questions = []
-        board_categories = jeopardy_round['board']
-        categories = random.sample(board_categories, NUM_CATEGORIES)
+        board_categories = jeopardy_round
+        categories = random.sample(board_categories, num_categories)
         out_categories = []
         for in_category in categories:
             id = str(uuid4())
@@ -59,8 +60,7 @@ def get_questions_impl():
                 questions = [questions[0], questions[2], questions[4]]
             elif len(questions) == 4:
                 questions = [questions[0], questions[2], questions[3]]
-            else:
-                questions = [questions[0], questions[1], questions[2]]
+                
 
             for idx, q in enumerate(questions):
                 question = {
@@ -80,11 +80,13 @@ def get_questions_impl():
 
     game = random.choice(game_links_by_season["35"])
     board = get_board(game)
-
     rounds = board['rounds']
+    num_rounds = len(rounds)
+    questions = []
 
-    questions = pick_questions_from_round(
-        rounds['jeopardy'], 1) + pick_questions_from_round(rounds['double_jeopardy'], 2)
+    for idx, round in enumerate(rounds):
+        questions.extend(pick_questions_from_round(round, idx + 1, num_categories=(6 if num_rounds == 1 else NUM_CATEGORIES)))
+
     return {'questions': questions, 'game_url': game}
 
 @app.route('/game')

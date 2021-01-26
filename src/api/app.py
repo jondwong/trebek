@@ -28,7 +28,7 @@ def generate_board():
     return { 'board': board }
 
 
-@app.route('/questions')
+@app.route('/api/questions')
 def get_questions():
     failure = True
     while failure:

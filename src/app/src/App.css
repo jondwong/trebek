@@ -21,6 +21,8 @@
 
 .AppContainer {
   width: 80vw;
+  margin-top:80px;
+  
 }
 
 .App-link {
@@ -144,7 +146,8 @@
   border-right: 1px solid rgba(73, 81, 95, .5);;
   padding:8px;
   font-size: calc(4px + 2vmin);
-
+  display:flex;
+  flex-direction: column;
 }
 
 
@@ -173,10 +176,74 @@
 }
 
 .TopNavigation {
-  position:absolute;
+  position:fixed;
   width:100vw;
-  top:7px;
+  padding-top:7px;
   left:0;
   display:flex;
   padding-right:10px;
+  background-color: inherit;
+  top:0px;
+  z-index:10;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .BottomNavigation {
+    display:flex;
+
+    margin-top:10px;
+    flex-direction:column;
+
+  }
+}
+
+
+@media only screen and (max-width:600px) {
+  .nav-icon {
+    font-size:3em;
+  }
+
+  .nav-button {
+    border: 1px solid #303030;
+    min-width:50px !important;
+  }
+
+  .TopNavigation {
+  
+  }
+
+  .trebek-logo {
+    font-size:2em !important;
+    margin-left:20px;
+  }
+}
+
+
+
+.trebek-logo {
+  padding:10px;
+  font-size: 1em;
+  font-weight:bold;
+  color: #495772;
+}
+
+.Category-details {
+  font-size: calc(1px + 1.5vmin);
+}
+
+.PointsDisplay-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.TopRow {
+  display:flex;
+}
+
+.RemainingLabel-text {
+  font-size: 15px;
+  color: #c4b212;
 }

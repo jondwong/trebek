@@ -1,4 +1,4 @@
-import { FaPlus, FaMinus} from 'react-icons/fa';
+import { FaCheck, FaTimes, FaMinus} from 'react-icons/fa';
 import './Buttons.css'
 export default function TeamButton({
   sensitive,
@@ -25,7 +25,7 @@ export default function TeamButton({
           }
         }}
       >
-        <FaPlus class="TeamButton-icon" />
+        <FaCheck className="TeamButton-icon" />
       </div>
       <div className="TeamButton-text">
         <div>Team {team_id}</div>
@@ -39,7 +39,7 @@ export default function TeamButton({
           }
         }}
       >
-        <FaMinus class="TeamButton-icon" />
+        <FaTimes class="TeamButton-icon" />
       </div>
     </div>
   );

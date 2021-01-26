@@ -1,5 +1,5 @@
 
-.button {
+.button,.nav-button{
   border-radius:5px; 
   padding-left:10px;
   padding-right:10px;
@@ -9,7 +9,6 @@
   padding:10px;
   font-size:30px;
   min-width: 100px; 
-  margin-left:8px;
   cursor:pointer;
 }
 
@@ -17,9 +16,6 @@
   filter: brightness(150%);
 }
 
-.green {
-
-}
 
 .TeamButton {
   display:flex; 
@@ -34,7 +30,7 @@
 
 .TeamButton-icon {
   font-size: calc(4px + 2vmin);
-  min-width:25px;
+  
 }
 
 .TeamButton-icon:hover {
@@ -91,4 +87,43 @@
 
 .nav-button:hover {
     border: 1px solid #2f394b;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .TeamButton {
+    display:flex; 
+    border-radius:5px;
+    min-height:55px;
+    margin-top:10px;
+  } 
+
+  .TeamButton:not(:first-child) {
+    margin-left:0px;
+  }
+
+  .TeamButton-iconcontainer {
+    display:flex;
+    flex:column;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .TeamButton-text {
+    flex-grow:1;
+  }
+
+  .nav-button div {
+    display:none;
+    font-size:50px;
+  }
+
+  .TeamButton-icon {
+    font-size: calc(8px + 2vmin);
+    min-width:25px;
+  }
 }

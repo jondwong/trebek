@@ -1,7 +1,7 @@
 
 import React, {Component, useState} from 'react'
 import {FaCircle} from 'react-icons/fa'
-
+import '../App.css'
 function Question({ question , onAnswerClick, displayAnswer}) {
     let body = !displayAnswer ? (
       <div
@@ -33,7 +33,7 @@ function QuestionFooter({question}) {
             <PointsDisplay points={question.value} />
             <div className='Category'>
                 <div>{question.category.title}</div>
-                </div>{question.category.details}<div>
+                <div className='Category-details'>{question.category.details}</div>
             </div>
         </div>
     )
@@ -53,9 +53,11 @@ class PointsDisplay extends Component {
         }
         return (
             <div className='PointsDisplay'>
+                <div className='PointsDisplay-container'>
                 {
                     circles
                 }
+                </div>
             </div>
         )
     }

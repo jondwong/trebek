@@ -17,7 +17,7 @@
 }
 
 .Score-points {
-  font-size: calc(50px + 2vmin);
+  font-size: calc(50px + 2vw);
 }
 
 .Scoreboard {
@@ -29,10 +29,10 @@
 
 .Scoreboard-cell {
  
-  font-size:calc(5px + 2vmin);
+  font-size:calc(2vmin);
   border:1px solid #2f394b;
-  padding:5px;
-  width:3vw;
+  /* padding:5px; */
+  width:60px;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -54,3 +54,54 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.VerticalScoreboard {
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:30px;
+}
+
+.VerticalScoreboard-container {
+  flex-grow:1;
+  border: 1px solid #2f394b;
+  border-radius:10px;
+}
+
+.VerticalScoreboard-container:last-child {
+  margin-left:10px;
+}
+
+.VerticalScoreboard-container-points {
+  padding:40px;
+  font-size:calc(40px + 2vmin)
+
+}
+
+.VerticalScoreboard-container-header {
+  padding:8px;
+}
+
+@media only screen and (max-width: 900px) {
+  .Scoreboard {
+    display:none;
+  }
+
+  .VerticalScoreboard {
+    display:flex;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .Scoreboard {
+    display:block;
+  }
+
+  .VerticalScoreboard {
+    display:none;
+  }
+}
+
+

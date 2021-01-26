@@ -10,6 +10,7 @@ import Scoreboard from './components/scoring/Scoreboard'
 ;
 import {FaPlus, FaRegSave} from 'react-icons/fa';
 import GameOver from './GameOver';
+import { VerticalScoreboard } from './components/scoring/VerticalScoreboard';
 const TREBEK_LS_KEY = 'trebek-game'
 const CATEGORY_COLORS = [
   '#e76f51',
@@ -92,7 +93,8 @@ class App extends Component {
           loading: false,
           source_url: data.game_url,
           game_ended: false,
-          curr_question_idx: 0
+          curr_question_idx: 0,
+          display_answer: false
         });
       });
   }
@@ -201,11 +203,18 @@ class App extends Component {
         {this.state.loading && <ReactLoading />}
         {!this.state.loading && !this.state.game_ended && (
           <div className="AppContainer">
-            <TurnIndicator
-              team={this.state.current_team}
-              color={this.state.team_colors[this.state.current_team]}
-              onClick={this._change_team_turn.bind(this)}
-            />
+            <div className='TopRow'>
+              <RemainingLabel 
+                num_questions={this.state.questions.length} 
+                curr_question_idx={this.state.curr_question_idx}
+                />
+                <div style={{flexGrow:1}} />
+              <TurnIndicator
+                team={this.state.current_team}
+                color={this.state.team_colors[this.state.current_team]}
+                onClick={this._change_team_turn.bind(this)}
+              />
+            </div>
             <div className="QuestionContainer">
               {this.state.questions.length > 0 && (
                 <Question
@@ -236,6 +245,14 @@ class App extends Component {
                 onCellClick={this._scoreboard_cell_clicked.bind(this)}
               />
             }
+            {
+              <VerticalScoreboard
+                team_points={this.state.team_points}
+                team_colors={this.state.team_colors}
+
+              />
+
+            }
           </div>
         )}
 
@@ -245,6 +262,14 @@ class App extends Component {
       </div>
     );
   }
+}
+
+function RemainingLabel({ num_questions, curr_question_idx}) {
+  return (
+    <div className='RemainingLabel'>
+      <div className='RemainingLabel-text'>{num_questions-(curr_question_idx + 1)} questions remaining!</div>
+    </div>
+  )
 }
 
 
@@ -262,13 +287,7 @@ function TopNavigation({ onNewGameClick, onSaveClick }) {
   return (
     <div className="TopNavigation">
       <div
-        style={{
-          padding: '10px',
-          fontSize: '1em',
-          marginLeft: '15px',
-          fontWeight:'bold',
-          color: '#495772',
-        }}
+        className='trebek-logo'
       >
         trebek.
       </div>
@@ -280,7 +299,7 @@ function TopNavigation({ onNewGameClick, onSaveClick }) {
           fontSize: '.5em',
           backgroundColor: 'none',
         }}
-        icon={<FaPlus />}
+        icon={<FaPlus className='nav-icon'/>}
         text="New Game"
         color="rgb(65, 71, 82)"
       ></Button>
@@ -291,11 +310,13 @@ function TopNavigation({ onNewGameClick, onSaveClick }) {
           fontSize: '.5em',
           backgroundColor: 'none',
         }}
-        icon={<FaRegSave />}
+        icon={<FaRegSave className='nav-icon'/>}
         text="Save Game"
         color="rgb(65, 71, 82)"
       ></Button>
     </div>
   );
 }
+
+
 export default App;
